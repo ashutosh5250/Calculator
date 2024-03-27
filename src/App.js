@@ -15,6 +15,7 @@ function App() {
         setResult(eval(value));
       } catch (error) {
         setResult("Error");
+        console.log(error);
       }
     } else {
       setValue((prev) => prev + e.target.value);
