@@ -16,10 +16,13 @@ function App() {
         try {
           // eslint-disable-next-line no-eval
           const evalResult = eval(value);
-          if (isNaN(evalResult) || !isFinite(evalResult)) {
-            throw new Error("Invalid expression");
+          if (isNaN(evalResult)) {
+            setResult("NaN");
+          } else if (!isFinite(evalResult)) {
+            setResult("Infinity");
+          } else {
+            setResult(evalResult);
           }
-          setResult(evalResult);
         } catch (error) {
           setResult("Error");
           console.log(error);
