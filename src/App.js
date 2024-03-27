@@ -10,12 +10,20 @@ function App() {
       setValue("");
       setResult("");
     } else if (e.target.value === "=") {
-      try {
-        // eslint-disable-next-line no-eval
-        setResult(eval(value));
-      } catch (error) {
+      if (value === "") {
         setResult("Error");
-        console.log(error);
+      } else {
+        try {
+          // eslint-disable-next-line no-eval
+          const evalResult = eval(value);
+          if (isNaN(evalResult) || !isFinite(evalResult)) {
+            throw new Error("Invalid expression");
+          }
+          setResult(evalResult);
+        } catch (error) {
+          setResult("Error");
+          console.log(error);
+        }
       }
     } else {
       setValue((prev) => prev + e.target.value);
