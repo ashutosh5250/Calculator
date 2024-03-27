@@ -10,6 +10,7 @@ function App() {
       setValue("");
       setResult("");
     } else if (e.target.value === "=") {
+      // eslint-disable-next-line no-eval
       setResult(eval(value));
     } else {
       setValue((prev) => prev + e.target.value);
