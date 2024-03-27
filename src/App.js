@@ -10,8 +10,12 @@ function App() {
       setValue("");
       setResult("");
     } else if (e.target.value === "=") {
-      // eslint-disable-next-line no-eval
-      setResult(eval(value));
+      try {
+        // eslint-disable-next-line no-eval
+        setResult(eval(value));
+      } catch (error) {
+        setResult("Error");
+      }
     } else {
       setValue((prev) => prev + e.target.value);
     }
